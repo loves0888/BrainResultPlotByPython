@@ -8,7 +8,7 @@ bg_img_file = 'C:\\Users\\Administrator\\nilearn_data\\icbm152_2009\\mni_icbm152
 #cognitive_task = 'IWRD_RTC'
 significant_results = {
     "Uncorrected p < 0.05": [],
-    "FDR-corrected p < 0.001": [],
+    "FDR-corrected p < 0.0001": [],
 }
 
 for brain_region_dir in os.listdir(data_path):
@@ -31,4 +31,4 @@ for brain_region_dir in os.listdir(data_path):
                 if uncorrected_significant:
                     significant_results["Uncorrected p < 0.05"].append((brain_region, cognitive_task))
                 if fdr_significant:
-                    significant_results["FDR-corrected p < 0.001"].append((brain_region, cognitive_task))
+                    significant_results["FDR-corrected p < 0.0001"].append((brain_region, cognitive_task))
