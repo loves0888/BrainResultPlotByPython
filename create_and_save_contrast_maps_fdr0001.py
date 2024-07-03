@@ -91,7 +91,7 @@ def create_and_save_contrast_maps_fdr0001(data_path: str, brain_region: str, cog
     # FDR-corrected p < 0.05
     fdr_results = fdrcorrection(p_values, alpha=desired_p_value)
     fdr_corrected_p_values = fdr_results[1]
-    selected_p_values = p_values[fdr_corrected_p_values < 0.001]
+    selected_p_values = p_values[fdr_corrected_p_values < 0.0001]
     if len(selected_p_values) > 0:
         threshold_p_value = np.max(selected_p_values)
         desired_t_threshold_fdr = stats.t.isf(threshold_p_value / 2, df)
@@ -109,8 +109,8 @@ def create_and_save_contrast_maps_fdr0001(data_path: str, brain_region: str, cog
     fig = plt.figure(figsize=(12, 10))
     gs = gridspec.GridSpec(3, 1, hspace=0, wspace=0, top=0.9, bottom=0.1, left=0.1, right=0.9)
     axs = [fig.add_subplot(gs[i, 0]) for i in range(3)]
-    titles = ['All p-values', 'Uncorrected p < 0.05', 'FDR-corrected p < 0.001']
-    names = ['All p', 'Uncorrected p', 'FDR-corrected p001']
+    titles = ['All p-values', 'Uncorrected p < 0.05', 'FDR-corrected p < 0.0001']
+    names = ['All p', 'Uncorrected p', 'FDR-corrected p0001']
     for ax, threshold, title, name in zip(axs, [desired_t_threshold_all, desired_t_threshold, desired_t_threshold_fdr], titles, names):
         if threshold is not None:
             plot_glass_brain(t_image, threshold=threshold, vmax=max_t_value, display_mode='lyrz', black_bg=True,
